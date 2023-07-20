@@ -1,7 +1,9 @@
-import React from 'react'
+import Posts from './Posts'
 
-export default function Posts() {
+export default function Page() {
   return (
-    <div>Posts page</div>
+    <>
+      <Posts />
+    </>
   )
 }
