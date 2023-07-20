@@ -9,6 +9,14 @@ const nextConfig = {
         pathname: '/**',
       }
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/protected',
+        destination: '/protected'
+      }
+    ]
   }
 }
 
