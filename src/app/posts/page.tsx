@@ -1,9 +1,12 @@
+'use client'
 import Posts from './Posts'
 
 export default function Page() {
   return (
     <>
-      <Posts />
+      <div className='flex justify-center items-center h-[30rem]'>
+        <Posts />
+      </div>
     </>
   )
 }

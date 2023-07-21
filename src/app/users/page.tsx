@@ -1,10 +1,13 @@
+'use client'
 import React from 'react'
 import Users from './Users'
 
 export default function page() {
   return (
     <>
-      <Users />
+      <div className='flex justify-center items-center h-[30rem]'>
+        <Users />
+      </div>
     </>
   )
 }

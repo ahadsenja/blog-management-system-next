@@ -48,3 +48,10 @@ export const posts = [
     author: "Admin",
   }
 ]
+
+export const account = [
+  {
+    username: "admin@mail.com",
+    password: "admin"
+  }
+]
