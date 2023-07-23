@@ -1,13 +1,22 @@
 'use client'
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const router = useRouter();
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (!isLoggedIn) {
+        router.push('/login');
+      }
+    }
+  }, [router])
 
   return (
     <>
-      {isLoggedIn ? <h1>Dashboard page</h1> : router.push('/login')}
+      <h1>Dashboard</h1>
     </>
   )
 }
