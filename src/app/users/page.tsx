@@ -4,7 +4,9 @@ import Users from './Users'
 export default function Page() {
   return (
     <>
-      <Users />
+      <div className='flex justify-center items-center h-[30rem]'>
+        <Users />
+      </div>
     </>
   )
 }

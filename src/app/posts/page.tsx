@@ -4,7 +4,9 @@ import Posts from './Posts'
 export default function page() { 
   return (
     <>
-      <Posts />
+      <div className='flex justify-center items-center h-[30rem]'>
+        <Posts />
+      </div>
     </>
   )
 }
