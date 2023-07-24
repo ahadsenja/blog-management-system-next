@@ -1,4 +1,3 @@
-'use client'
 import Posts from './Posts'
 
 export default function page() { 
