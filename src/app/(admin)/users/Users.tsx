@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { account } from "../helper/datas"
+import { account } from "../../helper/datas"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
