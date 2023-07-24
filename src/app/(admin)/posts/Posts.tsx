@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { posts } from "../helper/datas";
+import { posts } from "../../helper/datas";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +18,7 @@ export default function Posts() {
   
   return (
     <>
-      <div className="mb-6">
+      <div className="mt-2 mb-6">
         <Link className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={"/posts/create-post"}>Add Post</Link>
       </div>
       <table className="table w-full bg-gray-900 rounded">
