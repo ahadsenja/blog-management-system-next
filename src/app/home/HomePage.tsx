@@ -1,9 +1,10 @@
 'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Navbar from '../components/FrontPage/Navbar'
 
-export default function HomePage({ posts }: { posts: any[] }) {
+export default function HomePage({ posts }: {posts: any[]}) {
   return (
     <>
       <Navbar />
@@ -15,11 +16,13 @@ export default function HomePage({ posts }: { posts: any[] }) {
       <div className='blog container mx-auto w-full justify-between flex flex-wrap'>
         {
           posts.map((post, index) => {
-            return <div key={index} className='w-1/3 pr-8 pb-12'>
-              <Image className='w-full mb-4' src={post.featuredImage} alt={post.title} width={300} height={200} />
-              <h2 className='w-full text-2xl font-bold mb-4'>{post.title}</h2>
-              <p className='w-full'>{post.content}</p>
-            </div>
+            return (
+              <div key={index} className='w-1/3 pr-8 pb-12'>
+                <Image className='w-full mb-4' src={post.featuredImage} alt={post.title} width={300} height={200} />
+                <h2 className='w-full text-2xl font-bold mb-4'>{post.title}</h2>
+                <p className='w-full'>{post.content}</p>
+              </div>
+            )
           })
         }
       </div>
