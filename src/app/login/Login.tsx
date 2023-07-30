@@ -1,7 +1,8 @@
 'use client'
+
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react"
-import { account } from "../helper/datas";
+import { useEffect } from "react"
+import { users } from "../helper/data.json";
 
 export default function Login({ username, password, onSetUsername, onSetPassword }: any) {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function Login({ username, password, onSetUsername, onSetPassword
     e.preventDefault();
 
     try {
-      const userAccount = account.map((data: any) => {
+      const userAccount = users.map((data: any) => {
         return {
           username: data.username,
           password: data.password
