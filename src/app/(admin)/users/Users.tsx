@@ -1,10 +1,11 @@
 'use client'
-import Link from "next/link"
-import { account } from "../../helper/datas"
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function Users() {
+import Link from "next/link"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { UserIface } from "@/app/types/BlogInterface";
+
+export default function Users({ users }: { users: UserIface[] }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Users() {
           </tr>
         </thead>
         <tbody className="bg-white text-black">
-          {account.map((data, index) => (
+          {users.map((data: any, index: any) => (
             <tr key={index}>
               <td>{data.username}</td>
               <td className="text-center">

@@ -1,10 +1,12 @@
 'use client'
-import Link from "next/link";
-import { posts } from "../../helper/datas";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function Posts() {
+import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { PostIface } from "@/app/types/BlogInterface";
+import Post from "./Post";
+
+export default function Posts({ posts }: { posts: PostIface[] }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -14,33 +16,33 @@ export default function Posts() {
         router.push('/login');
       }
     }
-  }, [router])
+  }, [router]);
   
+  const sortedPosts = [...posts].sort((a: any, b: any) => a.id - b.id);
+
   return (
     <>
       <div className="mt-2 mb-6">
-        <Link className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href={"/posts/create-post"}>Add Post</Link>
+        <Link 
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+          href={"/posts/create-post"}
+        >
+          Add Post
+        </Link>
       </div>
       <table className="table w-full bg-gray-900 rounded">
         <thead>
           <tr>
-            <th className="text-left">Title</th>
-            <th className="w-40">Category</th>
-            <th className="w-40">Author</th>
-            <th className="w-40">Action</th>
+            <th className="w-40 text-left">Featured Image</th>
+            <th className="w-1/2 text-left">Title</th>
+            <th className="">Category</th>
+            <th className="">Author</th>
+            <th className="">Action</th>
           </tr>
         </thead>
         <tbody className="bg-white text-black">
-          {posts.map((data, index) => (
-            <tr key={index}>
-              <td className="font-medium">{data.title}</td>
-              <td className="text-center">{data.category}</td>
-              <td className="text-center">{data.author}</td>
-              <td className="text-center">
-                <Link href={`/posts/edit-post/${data.uuid}`} className="hover:underline mr-2">Edit</Link>
-                <Link href={`/posts/${data.uuid}`} className="hover:underline">Delete</Link>
-              </td>
-            </tr>
+          {sortedPosts.map((data, index) => (
+            <Post key={index} post={data} />
           ))}
         </tbody>
       </table>

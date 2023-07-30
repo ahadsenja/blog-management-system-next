@@ -1,9 +1,14 @@
+import PostServices from '@/app/helper/post.service';
 import Users from './Users'
 
-export default function Page() {
+export default async function Page() {
+  const postService = new PostServices();
+
+  const getAllUsers = await postService.getAllUsers();
+
   return (
     <>
-      <Users />
+      <Users users={getAllUsers} />
     </>
   )
 }
