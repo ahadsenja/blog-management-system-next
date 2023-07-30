@@ -1,11 +1,14 @@
-'use client'
-import { posts } from './helper/datas'
+import PostServices from './helper/post.service';
 import HomePage from './home/HomePage'
 
-export default function Home() {
+export default async function Home() {
+  const postServices = new PostServices();
+  
+  const getAllPosts = await postServices.getAllPosts();
+
   return (
     <>
-      <HomePage posts={posts} />
+      <HomePage posts={getAllPosts} />
     </>
   )
 }
