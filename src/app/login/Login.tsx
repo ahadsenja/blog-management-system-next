@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react"
-import { users } from "../helper/data.json";
+import { users } from "../helper/account";
 
 export default function Login({ username, password, onSetUsername, onSetPassword }: any) {
   const router = useRouter();
