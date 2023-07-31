@@ -31,8 +31,8 @@ export default function EditPost({ params }: { params: string}) {
     setAuthor(response.author);
   }
 
-  const handleImageUpload = async (event: React.FormEvent) => {
-    const file = event.target.files[0];
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
     if (file) {
     const reader = new FileReader();

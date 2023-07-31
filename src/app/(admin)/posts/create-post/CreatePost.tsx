@@ -16,8 +16,8 @@ export default function CreatePost() {
   const router = useRouter();
   const postService = new PostServices();
 
-  const handleImageUpload = async (event: React.FormEvent) => {
-    const file = event.target.files[0];
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
 
     if (file) {
     const reader = new FileReader();
