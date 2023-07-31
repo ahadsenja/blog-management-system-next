@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function EditPost({ params }: { params: string}) {
+  //
   const router = useRouter();
   const postService = new PostServices();
   const postId = params;
