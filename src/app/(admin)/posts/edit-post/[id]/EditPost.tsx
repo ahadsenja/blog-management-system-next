@@ -3,7 +3,7 @@
 import PostServices from "@/app/helper/post.service";
 import { PostIface } from "@/app/types/BlogInterface";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function EditPost({ params }: { params: string}) {
   const router = useRouter();
@@ -16,9 +16,9 @@ export default function EditPost({ params }: { params: string}) {
   const [category, setCategory] = useState("");
   const [author, setAuthor] = useState("");
 
-  const getData = useCallback (() => {
-    const postService = new PostServices();
+  const postService = useMemo(() => new PostServices(), []);
 
+  const getData = useCallback (() => {
     postService.getPostById(postId).then((response: PostIface) => {
       setId(response.id);
       setTitle(response.title);
@@ -27,7 +27,7 @@ export default function EditPost({ params }: { params: string}) {
       setCategory(response.category);
       setAuthor(response.author);
     })
-  }, [postId])
+  }, [postId, postService])
 
   useEffect(() => {
     getData();
