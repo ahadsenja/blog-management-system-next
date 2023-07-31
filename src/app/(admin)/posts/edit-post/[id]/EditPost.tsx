@@ -1,12 +1,12 @@
 'use client'
 
 import PostServices from "@/app/helper/post.service";
+import { PostIface } from "@/app/types/BlogInterface";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function EditPost({ params }: { params: string}) {
   const router = useRouter();
-  const postService = new PostServices();
   const postId = params;
 
   const [id, setId] = useState("");
@@ -16,20 +16,22 @@ export default function EditPost({ params }: { params: string}) {
   const [category, setCategory] = useState("");
   const [author, setAuthor] = useState("");
 
+  const getData = useCallback (() => {
+    const postService = new PostServices();
+
+    postService.getPostById(postId).then((response: PostIface) => {
+      setId(response.id);
+      setTitle(response.title);
+      setContent(response.content);
+      setFeaturedImage(response.featuredImage);
+      setCategory(response.category);
+      setAuthor(response.author);
+    })
+  }, [postId])
+
   useEffect(() => {
     getData();
-  }, [])
-
-  const getData = async () => {
-    const response = await postService.getPostById(postId);
-
-    setId(response.id);
-    setTitle(response.title);
-    setContent(response.content);
-    setFeaturedImage(response.featuredImage);
-    setCategory(response.category);
-    setAuthor(response.author);
-  }
+  }, [getData]);
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -45,6 +47,9 @@ export default function EditPost({ params }: { params: string}) {
 
   const handleEditSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+  const postService = new PostServices();
+
     const updatedPost = {
       id,
       title,

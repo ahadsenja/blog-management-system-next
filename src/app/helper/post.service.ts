@@ -9,7 +9,7 @@ export default class PostServices {
     return posts
   }
 
-  getPostById = async (id: string | string[]): Promise<Response> => {
+  getPostById = async (id: string | string[]): Promise<PostIface> => {
     const response = await fetch(`${BASE_URL}/posts/${id}`);
     const post = await response.json();
     return post;
