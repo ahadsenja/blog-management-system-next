@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function EditPost({ params }: { params: string}) {
   const router = useRouter();
+  const postService = new PostServices();
   const postId = params;
 
   const [id, setId] = useState("");
@@ -17,8 +18,6 @@ export default function EditPost({ params }: { params: string}) {
   const [author, setAuthor] = useState("");
 
   const getData = useCallback (() => {
-    const postService = new PostServices();
-
     postService.getPostById(postId).then((response: PostIface) => {
       setId(response.id);
       setTitle(response.title);
@@ -27,7 +26,7 @@ export default function EditPost({ params }: { params: string}) {
       setCategory(response.category);
       setAuthor(response.author);
     })
-  }, [postId])
+  }, [])
 
   useEffect(() => {
     getData();
@@ -47,9 +46,6 @@ export default function EditPost({ params }: { params: string}) {
 
   const handleEditSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-  const postService = new PostServices();
-
     const updatedPost = {
       id,
       title,
