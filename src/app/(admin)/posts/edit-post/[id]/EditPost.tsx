@@ -5,9 +5,8 @@ import { PostIface } from "@/app/types/BlogInterface";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-export default function EditPost({ params }: { params: string}) {
+export default function EditPost({ postId }: { postId: string}) {
   const router = useRouter();
-  const postId = params;
 
   const [id, setId] = useState("");
   const [title, setTitle] = useState("");
