@@ -18,8 +18,6 @@ export default function Posts({ posts }: { posts: PostIface[] }) {
     }
   }, [router]);
   
-  const sortedPosts = [...posts].sort((a: any, b: any) => a.id - b.id);
-
   return (
     <>
       <div className="mt-2 mb-6">
@@ -41,7 +39,7 @@ export default function Posts({ posts }: { posts: PostIface[] }) {
           </tr>
         </thead>
         <tbody className="bg-white text-black">
-          {sortedPosts.map((data, index) => (
+          {posts.map((data, index) => (
             <Post key={index} post={data} />
           ))}
         </tbody>
