@@ -1,5 +1,5 @@
 # Define the base image
-FROM node:18-alpine
+FROM node:20-alpine3.17
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -13,6 +13,10 @@ RUN yarn install --frozen-lockfile
 
 # Copy all files
 COPY . .
+
+COPY .env .env.production
+
+RUN nohup /usr/src/app/.bin/json-server --watch src/app/helper/data.json --host 0.0.0.0 --port 5000 &
 
 # Build the Next.js app
 RUN yarn build
