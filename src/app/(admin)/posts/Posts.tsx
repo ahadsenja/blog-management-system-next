@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { PostIface } from "@/app/types/BlogInterface";
+import { PostIface } from "@/app/types/PostIface";
 import Post from "./Post";
 
 export default function Posts({ posts }: { posts: PostIface[] }) {

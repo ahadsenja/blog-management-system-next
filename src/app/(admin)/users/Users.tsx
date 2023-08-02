@@ -1,9 +1,8 @@
 'use client'
 
-import Link from "next/link"
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { UserIface } from "@/app/types/BlogInterface";
+import { UserIface } from "@/app/types/UserIface";
 
 export default function Users({ users }: { users: UserIface[] }) {
   const router = useRouter();
@@ -32,8 +31,8 @@ export default function Users({ users }: { users: UserIface[] }) {
             <tr key={index}>
               <td>{data.username}</td>
               <td className="text-center">
-                <Link href={`/posts`} className="hover:underline mr-2">Edit</Link>
-                <Link href={`/posts`} className="hover:underline">Delete</Link>
+                <button className="hover:underline mr-2">Edit</button>
+                <button className="hover:underline">Delete</button>
               </td>
             </tr>
           ))}

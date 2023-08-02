@@ -1,7 +1,7 @@
 'use client'
 
 import PostServices from "@/app/helper/post.service";
-import { PostIface } from "@/app/types/BlogInterface";
+import { PostIface } from "@/app/types/PostIface";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -66,6 +66,7 @@ export default function EditPost({ postId }: { postId: string}) {
     setId("");
     setTitle("");
     setContent("");
+    setFeaturedImage("");
     setCategory("");
     setAuthor("");
     
