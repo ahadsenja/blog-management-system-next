@@ -1,22 +1,20 @@
-import { PostIface, UserIface } from "../types/BlogInterface";
-
-const BASE_URL = "http://localhost:5000";
+import { PostIface } from "../types/PostIface";
 
 export default class PostServices {
   getAllPosts = async (): Promise<PostIface[]> => {
-    const response = await fetch(`${BASE_URL}/posts`, { cache: 'no-store' });
+    const response = await fetch(`${process.env.API_URL}/posts`);
     const posts = await response.json();
     return posts
   }
 
   getPostById = async (id: string | string[]): Promise<PostIface> => {
-    const response = await fetch(`${BASE_URL}/posts/${id}`);
+    const response = await fetch(`${process.env.API_URL}/posts/${id}`);
     const post = await response.json();
     return post;
   }
 
   createNewPost = async (post: PostIface): Promise<PostIface> => {
-    const response = await fetch(`${BASE_URL}/posts`, {
+    const response = await fetch(`${process.env.API_URL}/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,7 +26,7 @@ export default class PostServices {
   }
 
   updatePost = async (post: PostIface): Promise<PostIface> => {
-    const response = await fetch(`${BASE_URL}/posts/${post.id}`, {
+    const response = await fetch(`${process.env.API_URL}/posts/${post.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -40,14 +38,8 @@ export default class PostServices {
   }
 
   deletePost = async (id: string): Promise<void> => {
-    await fetch(`${BASE_URL}/posts/${id}`, {
+    await fetch(`${process.env.API_URL}/posts/${id}`, {
       method: 'DELETE'
     });
-  }
-
-  getAllUsers = async (): Promise<UserIface[]> => {
-    const response = await fetch(`${BASE_URL}/users`);
-    const users = await response.json();
-    return users;
   }
 }
