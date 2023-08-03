@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Navbar from '../components/FrontPage/Navbar'
+import { useEffect } from 'react'
 
 export default function HomePage({ posts }: {posts: any[]}) {
-  return (
+   return (
     <>
       <Navbar />
 
