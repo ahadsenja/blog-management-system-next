@@ -1,22 +1,17 @@
 # Define the base image
-FROM node:20-alpine3.17
+FROM node:18-alpine3.17
 
 # Set the working directory
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json before other files
-# Utilise Docker cache to save re-installing dependencies if unchanged
-COPY package.json yarn.lock ./
-
-# Install dependencies
-RUN yarn install --frozen-lockfile
+WORKDIR /app
 
 # Copy all files
-COPY . .
+COPY . /app
+COPY .env.local /app/.env.production
+RUN rm -rf /app/.next
+RUN rm -rf /app/package-lock.json
 
-COPY .env .env.production
-
-RUN nohup /usr/src/app/.bin/json-server --watch src/app/helper/data.json --host 0.0.0.0 --port 5000 &
+# Install dependencies
+RUN yarn install 
 
 # Build the Next.js app
 RUN yarn build
@@ -25,4 +20,5 @@ RUN yarn build
 EXPOSE 3000
 
 # Run npm start script
-CMD ["yarn", "start"]
+CMD ["sh", "-c", "yarn json-server & yarn start"]
+

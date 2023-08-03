@@ -47,7 +47,7 @@ export default function EditPost({ postId }: { postId: string}) {
   const handleEditSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-  const postService = new PostServices();
+    const postService = new PostServices();
 
     const updatedPost = {
       id,

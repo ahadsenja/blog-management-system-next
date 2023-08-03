@@ -1,45 +1,54 @@
-import { PostIface } from "../types/PostIface";
+import axios from 'axios';
+import { PostIface } from '../types/PostIface';
 
 export default class PostServices {
   getAllPosts = async (): Promise<PostIface[]> => {
-    const response = await fetch(`${process.env.API_URL}/posts`);
-    const posts = await response.json();
-    return posts
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      return [];
+    }
   }
 
   getPostById = async (id: string | string[]): Promise<PostIface> => {
-    const response = await fetch(`${process.env.API_URL}/posts/${id}`);
-    const post = await response.json();
-    return post;
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching post by ID:', error);
+      return {} as PostIface; // Return an empty object if there's an error
+    }
   }
 
   createNewPost = async (post: PostIface): Promise<PostIface> => {
-    const response = await fetch(`${process.env.API_URL}/posts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(post)
-    })
-    const newPost = response.json();
-    return newPost;
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/posts`, post);
+      console.log("Data: ", response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error creating new post:', error);
+      return {} as PostIface; // Return an empty object if there's an error
+    }
   }
 
   updatePost = async (post: PostIface): Promise<PostIface> => {
-    const response = await fetch(`${process.env.API_URL}/posts/${post.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(post)
-    })
-    const updatedPost = response.json();
-    return updatedPost;
+    try {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/posts/${post.id}`, post);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating post:', error);
+      return {} as PostIface; // Return an empty object if there's an error
+    }
   }
 
   deletePost = async (id: string): Promise<void> => {
-    await fetch(`${process.env.API_URL}/posts/${id}`, {
-      method: 'DELETE'
-    });
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`);
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      // No return value needed for delete, but you could handle the error as needed
+    }
   }
 }

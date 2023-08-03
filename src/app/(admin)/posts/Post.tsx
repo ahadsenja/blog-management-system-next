@@ -2,10 +2,11 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import PostServices from "@/app/helper/post.service";
 
-const postService = new PostServices();
 
 export default function Post({ post }: any) {
   const router = useRouter();
+  const postService = new PostServices();
+
 
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this post?") === true) {

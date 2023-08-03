@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  'latest':
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ahadsenja/blog-management-system-next:latest
+    ports:
+      - 3000:3000
+    # environment:
+    #   - NODE_ENV=development

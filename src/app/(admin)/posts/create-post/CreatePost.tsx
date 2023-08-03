@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PostServices from "@/app/helper/post.service"
 
 export default function CreatePost() {
-  const [id, setId] = useState(0);
+  const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [featuredImage, setFeaturedImage] = useState('');
@@ -45,12 +45,23 @@ export default function CreatePost() {
   }
 
   const handleFormReset = () => {
-    setId(0);
+    setId('');
     setTitle('');
     setContent('');
     setFeaturedImage('');
     setCategory('');
     setAuthor('');
+  }
+
+  const onCancel = () => {
+    setId("");
+    setTitle("");
+    setContent("");
+    setFeaturedImage("");
+    setCategory("");
+    setAuthor("");
+    
+    router.push('/posts');
   }
 
   return (
@@ -116,6 +127,12 @@ export default function CreatePost() {
         </label>
       </form>
 
+      <button 
+        className='bg-slate-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-4'
+        onClick={onCancel}
+      >
+        Cancel
+      </button>
       <button 
         className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
         type="submit"
